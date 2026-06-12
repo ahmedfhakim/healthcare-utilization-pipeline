@@ -1,0 +1,50 @@
+version: 2
+
+sources:
+  - name: healthcare_raw
+    database: healthcare-utilization
+    schema: healthcare_raw
+    tables:
+      - name: cms_provider_payments
+        description: >
+          CMS Medicare Physician and Other Practitioners by Provider.
+          One row per provider NPI. Contains total services, beneficiaries,
+          submitted charges, Medicare allowed and payment amounts for 2024.
+        columns:
+          - name: Rndrng_NPI
+            description: National Provider Identifier
+            tests:
+              - not_null
+              - unique
+
+      - name: bls_cpi_healthcare
+        description: >
+          Bureau of Labor Statistics Consumer Price Index for healthcare series.
+          One row per series per month from 2015 to present.
+          Used to inflation-adjust Medicare payment trends over time.
+        config:
+          loaded_at_field: loaded_at
+          freshness:
+            warn_after: {count: 35, period: day}
+            error_after: {count: 60, period: day}
+        columns:
+          - name: series_id
+            tests:
+              - not_null
+          - name: period_date
+            tests:
+              - not_null
+
+      - name: cms_geographic_variation
+        description: >
+          CMS Medicare Geographic Variation by State.
+          One row per state per year from 2014 to 2024.
+          Contains Medicare spending per capita, utilization rates,
+          and quality indicators by geography.
+        columns:
+          - name: YEAR
+            tests:
+              - not_null
+          - name: BENE_GEO_DESC
+            tests:
+              - not_null

@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: stg_cms_provider_payments
+    description: >
+      Cleaned CMS Medicare provider payment data for 2024.
+      Grain: one row per provider NPI, with totals aggregated
+      across all procedures performed by that provider.
+    columns:
+      - name: provider_npi
+        tests:
+          - not_null
+          - unique
+      - name: specialty
+        tests:
+          - not_null
+      - name: total_medicare_payment
+        tests:
+          - not_null
+
+  - name: stg_bls_cpi_healthcare
+    description: >
+      BLS healthcare CPI series by month, 2015 to present.
+      Grain: one row per series per month.
+    columns:
+      - name: series_id
+        tests:
+          - not_null
+      - name: period_date
+        tests:
+          - not_null
+      - name: cpi_value
+        tests:
+          - not_null
+
+  - name: stg_cms_geographic
+    description: >
+      CMS Medicare geographic variation by state, 2014-2024.
+      Grain: one row per state per year.
+    columns:
+      - name: state_code
+        tests:
+          - not_null
+      - name: year
+        tests:
+          - not_null
+      - name: payment_per_capita
+        tests:
+          - not_null

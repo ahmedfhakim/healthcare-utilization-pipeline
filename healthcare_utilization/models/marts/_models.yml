@@ -11,6 +11,10 @@ models:
       - name: weighted_avg_payment_per_service
         tests:
           - not_null
+          - assert_positive_payment
+      - name: avg_payment_to_charge_pct
+        tests:
+          - assert_valid_percentage
 
   - name: mart_geographic_variation
     description: One row per state per year with Medicare spending vs national average.
@@ -21,6 +25,9 @@ models:
       - name: year
         tests:
           - not_null
+      - name: payment_per_capita
+        tests:
+          - assert_positive_payment
 
   - name: mart_provider_outliers
     description: One row per provider with cost efficiency relative to specialty peers, risk-adjusted.
@@ -29,3 +36,11 @@ models:
         tests:
           - unique
           - not_null
+
+  - name: mart_inflation_adjusted_trends
+    description: One row per CPI series per month, incremental, with month-over-month and year-over-year changes.
+    columns:
+      - name: cpi_value
+        tests:
+          - not_null
+          - assert_positive_payment

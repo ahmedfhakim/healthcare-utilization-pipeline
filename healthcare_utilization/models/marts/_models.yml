@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: mart_specialty_cost_benchmarks
+    description: One row per specialty with cost benchmarks, rankings, and chronic condition prevalence.
+    columns:
+      - name: specialty
+        tests:
+          - unique
+          - not_null
+      - name: weighted_avg_payment_per_service
+        tests:
+          - not_null
+
+  - name: mart_geographic_variation
+    description: One row per state per year with Medicare spending vs national average.
+    columns:
+      - name: state_code
+        tests:
+          - not_null
+      - name: year
+        tests:
+          - not_null
+
+  - name: mart_provider_outliers
+    description: One row per provider with cost efficiency relative to specialty peers, risk-adjusted.
+    columns:
+      - name: provider_npi
+        tests:
+          - unique
+          - not_null

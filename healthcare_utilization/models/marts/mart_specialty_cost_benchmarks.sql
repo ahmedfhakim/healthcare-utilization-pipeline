@@ -11,6 +11,7 @@ with specialties as (
 )
 
 select
+    date('2024-12-31')                                       as as_of_date,
     specialty,
     provider_count,
     total_services,

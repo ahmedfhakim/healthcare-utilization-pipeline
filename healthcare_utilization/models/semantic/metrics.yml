@@ -1,0 +1,59 @@
+metrics:
+  - name: total_medicare_spend
+    description: Total Medicare payment dollars across all specialties
+    type: simple
+    label: Total Medicare Spend
+    type_params:
+      measure: total_medicare_payment
+
+  - name: avg_payment_per_service
+    description: Volume-weighted average Medicare payment per service rendered
+    type: simple
+    label: Avg Payment per Service
+    type_params:
+      measure: weighted_avg_payment_per_service
+
+  - name: total_services_rendered
+    description: Total count of services rendered across all specialties
+    type: simple
+    label: Total Services Rendered
+    type_params:
+      measure: total_services
+
+  - name: provider_count
+    description: Total number of providers represented in the dataset
+    type: simple
+    label: Provider Count
+    type_params:
+      measure: provider_count
+
+  - name: avg_patient_acuity
+    description: Average patient risk score, a proxy for population health complexity
+    type: simple
+    label: Avg Patient Risk Score
+    type_params:
+      measure: avg_patient_risk_score
+
+  - name: avg_payment_per_capita
+    description: Average Medicare payment per beneficiary by state and year
+    type: simple
+    label: Avg Payment per Capita
+    type_params:
+      measure: payment_per_capita
+
+  - name: avg_readmission_rate
+    description: Average hospital readmission rate across states
+    type: simple
+    label: Avg Readmission Rate
+    type_params:
+      measure: readmission_rate
+
+  - name: high_cost_specialty_concentration
+    description: >
+      Ratio of total spend to total services, used to identify whether
+      spend is concentrated in a small number of high-cost specialties
+    type: ratio
+    label: Spend Concentration Ratio
+    type_params:
+      numerator: total_medicare_spend
+      denominator: total_services_rendered

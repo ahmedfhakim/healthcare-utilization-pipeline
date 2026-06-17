@@ -1,0 +1,38 @@
+semantic_models:
+  - name: sm_specialty_cost_benchmarks
+    description: Semantic model for specialty-level Medicare cost benchmarking
+    model: ref('mart_specialty_cost_benchmarks')
+    defaults:
+      agg_time_dimension: as_of_date
+
+    entities:
+      - name: specialty
+        type: primary
+        expr: specialty
+
+    dimensions:
+      - name: cost_tier
+        type: categorical
+      - name: cost_rank
+        type: categorical
+      - name: as_of_date
+        type: time
+        type_params:
+          time_granularity: day
+
+    measures:
+      - name: total_medicare_payment
+        agg: sum
+        description: Total Medicare payment dollars for this specialty
+      - name: total_services
+        agg: sum
+        description: Total services rendered by this specialty
+      - name: provider_count
+        agg: sum
+        description: Number of providers in this specialty
+      - name: weighted_avg_payment_per_service
+        agg: average
+        description: Volume-weighted average payment per service
+      - name: avg_patient_risk_score
+        agg: average
+        description: Average HCC risk score of patients seen by this specialty

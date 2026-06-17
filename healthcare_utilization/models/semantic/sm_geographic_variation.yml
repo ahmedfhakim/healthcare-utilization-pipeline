@@ -1,0 +1,39 @@
+semantic_models:
+  - name: sm_geographic_variation
+    description: Semantic model for state-level Medicare spending variation
+    model: ref('mart_geographic_variation')
+    defaults:
+      agg_time_dimension: year_date
+
+    entities:
+      - name: state_year
+        type: primary
+        expr: concat(state_code, cast(year as string))
+
+    dimensions:
+      - name: state_code
+        type: categorical
+      - name: spend_category
+        type: categorical
+      - name: year_date
+        type: time
+        type_params:
+          time_granularity: year
+        expr: cast(concat(cast(year as string), '-01-01') as date)
+
+    measures:
+      - name: payment_per_capita
+        agg: average
+        description: Average Medicare payment per beneficiary in this state-year
+      - name: standardized_payment_per_capita
+        agg: average
+        description: Geography-adjusted Medicare payment per beneficiary
+      - name: er_visits_per_1000
+        agg: average
+        description: ER visits per 1000 beneficiaries
+      - name: readmission_rate
+        agg: average
+        description: Hospital readmission rate
+      - name: total_beneficiaries
+        agg: sum
+        description: Total Medicare beneficiaries in this state-year

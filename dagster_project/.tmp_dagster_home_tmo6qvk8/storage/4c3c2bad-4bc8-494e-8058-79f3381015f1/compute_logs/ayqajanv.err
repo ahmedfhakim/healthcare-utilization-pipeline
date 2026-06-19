@@ -1,0 +1,90 @@
+[32m2026-06-19 19:28:09 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4c3c2bad-4bc8-494e-8058-79f3381015f1 - 23093 - LOGS_CAPTURED - Capturing logs for process (pid: 23093).
+[32m2026-06-19 19:28:09 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4c3c2bad-4bc8-494e-8058-79f3381015f1 - 23093 - dbt_build - STEP_START - Started execution of step "dbt_build".
+[32m2026-06-19 19:28:44 -0400[0m - dagster - [34mINFO[0m - __ASSET_JOB - 4c3c2bad-4bc8-494e-8058-79f3381015f1 - dbt_build - [0m23:28:09  Running with dbt=1.11.11
+[0m23:28:10  Registered adapter: bigquery=1.11.1
+[0m23:28:10  Found 28 data tests, 11 models, 3 sources, 8 metrics, 667 macros, 2 semantic models
+[0m23:28:10  
+[0m23:28:10  Concurrency: 4 threads (target='dev')
+[0m23:28:10  
+[0m23:28:15  1 of 36 START sql table model healthcare_staging.metricflow_time_spine ......... [RUN]
+[0m23:28:15  2 of 36 START test source_not_null_healthcare_raw_bls_cpi_healthcare_period_date  [RUN]
+[0m23:28:15  3 of 36 START test source_not_null_healthcare_raw_bls_cpi_healthcare_series_id . [RUN]
+[0m23:28:15  4 of 36 START test source_not_null_healthcare_raw_cms_geographic_variation_BENE_GEO_DESC  [RUN]
+[0m23:28:17  4 of 36 PASS source_not_null_healthcare_raw_cms_geographic_variation_BENE_GEO_DESC  [[32mPASS[0m in 2.58s]
+[0m23:28:17  5 of 36 START test source_not_null_healthcare_raw_cms_geographic_variation_YEAR  [RUN]
+[0m23:28:18  3 of 36 PASS source_not_null_healthcare_raw_bls_cpi_healthcare_series_id ....... [[32mPASS[0m in 2.67s]
+[0m23:28:18  6 of 36 START test source_not_null_healthcare_raw_cms_provider_payments_Rndrng_NPI  [RUN]
+[0m23:28:18  2 of 36 PASS source_not_null_healthcare_raw_bls_cpi_healthcare_period_date ..... [[32mPASS[0m in 3.45s]
+[0m23:28:18  7 of 36 START test source_unique_healthcare_raw_cms_provider_payments_Rndrng_NPI  [RUN]
+[0m23:28:19  1 of 36 OK created sql table model healthcare_staging.metricflow_time_spine .... [[32mCREATE TABLE (4.6k rows, 0 processed)[0m in 3.90s]
+[0m23:28:19  8 of 36 START sql view model healthcare_staging_staging.stg_bls_cpi_healthcare . [RUN]
+[0m23:28:20  5 of 36 PASS source_not_null_healthcare_raw_cms_geographic_variation_YEAR ...... [[32mPASS[0m in 2.85s]
+[0m23:28:20  9 of 36 START sql view model healthcare_staging_staging.stg_cms_geographic ..... [RUN]
+[0m23:28:20  7 of 36 PASS source_unique_healthcare_raw_cms_provider_payments_Rndrng_NPI ..... [[32mPASS[0m in 2.07s]
+[0m23:28:20  6 of 36 PASS source_not_null_healthcare_raw_cms_provider_payments_Rndrng_NPI ... [[32mPASS[0m in 2.85s]
+[0m23:28:20  10 of 36 START sql view model healthcare_staging_staging.stg_cms_provider_payments  [RUN]
+[0m23:28:22  8 of 36 OK created sql view model healthcare_staging_staging.stg_bls_cpi_healthcare  [[32mCREATE VIEW (0 processed)[0m in 2.95s]
+[0m23:28:22  11 of 36 START test not_null_stg_bls_cpi_healthcare_cpi_value .................. [RUN]
+[0m23:28:22  12 of 36 START test not_null_stg_bls_cpi_healthcare_period_date ................ [RUN]
+[0m23:28:22  9 of 36 OK created sql view model healthcare_staging_staging.stg_cms_geographic  [[32mCREATE VIEW (0 processed)[0m in 1.64s]
+[0m23:28:22  13 of 36 START test not_null_stg_bls_cpi_healthcare_series_id .................. [RUN]
+[0m23:28:22  10 of 36 OK created sql view model healthcare_staging_staging.stg_cms_provider_payments  [[32mCREATE VIEW (0 processed)[0m in 1.61s]
+[0m23:28:22  14 of 36 START test not_null_stg_cms_geographic_payment_per_capita ............. [RUN]
+[0m23:28:23  11 of 36 PASS not_null_stg_bls_cpi_healthcare_cpi_value ........................ [[32mPASS[0m in 1.54s]
+[0m23:28:23  15 of 36 START test not_null_stg_cms_geographic_state_code ..................... [RUN]
+[0m23:28:23  12 of 36 PASS not_null_stg_bls_cpi_healthcare_period_date ...................... [[32mPASS[0m in 1.63s]
+[0m23:28:23  16 of 36 START test not_null_stg_cms_geographic_year ........................... [RUN]
+[0m23:28:24  13 of 36 PASS not_null_stg_bls_cpi_healthcare_series_id ........................ [[32mPASS[0m in 1.61s]
+[0m23:28:24  17 of 36 START test not_null_stg_cms_provider_payments_provider_npi ............ [RUN]
+[0m23:28:25  14 of 36 PASS not_null_stg_cms_geographic_payment_per_capita ................... [[32mPASS[0m in 2.58s]
+[0m23:28:25  18 of 36 START test not_null_stg_cms_provider_payments_specialty ............... [RUN]
+[0m23:28:26  15 of 36 PASS not_null_stg_cms_geographic_state_code ........................... [[32mPASS[0m in 2.60s]
+[0m23:28:26  19 of 36 START test not_null_stg_cms_provider_payments_total_medicare_payment .. [RUN]
+[0m23:28:26  16 of 36 PASS not_null_stg_cms_geographic_year ................................. [[32mPASS[0m in 2.90s]
+[0m23:28:26  20 of 36 START test unique_stg_cms_provider_payments_provider_npi .............. [RUN]
+[0m23:28:27  17 of 36 PASS not_null_stg_cms_provider_payments_provider_npi .................. [[32mPASS[0m in 3.65s]
+[0m23:28:27  21 of 36 START sql table model healthcare_staging_marts.mart_geographic_variation  [RUN]
+[0m23:28:28  18 of 36 PASS not_null_stg_cms_provider_payments_specialty ..................... [[32mPASS[0m in 3.24s]
+[0m23:28:28  22 of 36 START sql table model healthcare_staging_marts.mart_inflation_adjusted_trends  [RUN]
+[0m23:28:28  19 of 36 PASS not_null_stg_cms_provider_payments_total_medicare_payment ........ [[32mPASS[0m in 2.29s]
+[0m23:28:29  20 of 36 PASS unique_stg_cms_provider_payments_provider_npi .................... [[32mPASS[0m in 2.29s]
+[0m23:28:29  23 of 36 START sql table model healthcare_staging_marts.mart_provider_outliers . [RUN]
+[0m23:28:29  24 of 36 START sql table model healthcare_staging_marts.mart_specialty_cost_benchmarks  [RUN]
+[0m23:28:31  21 of 36 OK created sql table model healthcare_staging_marts.mart_geographic_variation  [[32mCREATE TABLE (583.0 rows, 49.0 KiB processed)[0m in 3.97s]
+[0m23:28:31  25 of 36 START test assert_positive_payment_mart_geographic_variation_payment_per_capita  [RUN]
+[0m23:28:32  22 of 36 OK created sql table model healthcare_staging_marts.mart_inflation_adjusted_trends  [[32mCREATE TABLE (544.0 rows, 30.7 KiB processed)[0m in 4.13s]
+[0m23:28:32  26 of 36 START test not_null_mart_geographic_variation_state_code .............. [RUN]
+[0m23:28:33  23 of 36 OK created sql table model healthcare_staging_marts.mart_provider_outliers  [[32mCREATE TABLE (98.6k rows, 7.1 MiB processed)[0m in 3.94s]
+[0m23:28:33  27 of 36 START test not_null_mart_geographic_variation_year .................... [RUN]
+[0m23:28:34  25 of 36 PASS assert_positive_payment_mart_geographic_variation_payment_per_capita  [[32mPASS[0m in 2.64s]
+[0m23:28:34  28 of 36 START test assert_positive_payment_mart_inflation_adjusted_trends_cpi_value  [RUN]
+[0m23:28:34  26 of 36 PASS not_null_mart_geographic_variation_state_code .................... [[32mPASS[0m in 2.17s]
+[0m23:28:34  29 of 36 START test not_null_mart_inflation_adjusted_trends_cpi_value .......... [RUN]
+[0m23:28:35  24 of 36 OK created sql table model healthcare_staging_marts.mart_specialty_cost_benchmarks  [[32mCREATE TABLE (106.0 rows, 8.0 MiB processed)[0m in 6.06s]
+[0m23:28:35  30 of 36 START test not_null_mart_provider_outliers_provider_npi ............... [RUN]
+[0m23:28:35  27 of 36 PASS not_null_mart_geographic_variation_year .......................... [[32mPASS[0m in 2.25s]
+[0m23:28:35  31 of 36 START test unique_mart_provider_outliers_provider_npi ................. [RUN]
+[0m23:28:35  28 of 36 PASS assert_positive_payment_mart_inflation_adjusted_trends_cpi_value . [[32mPASS[0m in 1.36s]
+[0m23:28:35  32 of 36 START test assert_positive_payment_mart_specialty_cost_benchmarks_weighted_avg_payment_per_service  [RUN]
+[0m23:28:36  29 of 36 PASS not_null_mart_inflation_adjusted_trends_cpi_value ................ [[32mPASS[0m in 1.86s]
+[0m23:28:36  33 of 36 START test assert_valid_percentage_mart_specialty_cost_benchmarks_avg_payment_to_charge_pct  [RUN]
+[0m23:28:38  31 of 36 PASS unique_mart_provider_outliers_provider_npi ....................... [[32mPASS[0m in 2.93s]
+[0m23:28:38  34 of 36 START test not_null_mart_specialty_cost_benchmarks_specialty .......... [RUN]
+[0m23:28:38  30 of 36 PASS not_null_mart_provider_outliers_provider_npi ..................... [[32mPASS[0m in 3.29s]
+[0m23:28:38  35 of 36 START test not_null_mart_specialty_cost_benchmarks_weighted_avg_payment_per_service  [RUN]
+[0m23:28:39  32 of 36 PASS assert_positive_payment_mart_specialty_cost_benchmarks_weighted_avg_payment_per_service  [[32mPASS[0m in 3.62s]
+[0m23:28:39  36 of 36 START test unique_mart_specialty_cost_benchmarks_specialty ............ [RUN]
+[0m23:28:40  33 of 36 PASS assert_valid_percentage_mart_specialty_cost_benchmarks_avg_payment_to_charge_pct  [[32mPASS[0m in 3.78s]
+[0m23:28:40  35 of 36 PASS not_null_mart_specialty_cost_benchmarks_weighted_avg_payment_per_service  [[32mPASS[0m in 2.15s]
+[0m23:28:41  34 of 36 PASS not_null_mart_specialty_cost_benchmarks_specialty ................ [[32mPASS[0m in 2.89s]
+[0m23:28:43  36 of 36 PASS unique_mart_specialty_cost_benchmarks_specialty .................. [[32mPASS[0m in 4.59s]
+[0m23:28:44  
+[0m23:28:44  Finished running 5 table models, 28 data tests, 3 view models in 0 hours 0 minutes and 33.47 seconds (33.47s).
+[0m23:28:44  
+[0m23:28:44  [32mCompleted successfully[0m
+[0m23:28:44  
+[0m23:28:44  Done. PASS=36 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=36
+
+[32m2026-06-19 19:28:44 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4c3c2bad-4bc8-494e-8058-79f3381015f1 - 23093 - dbt_build - STEP_OUTPUT - Yielded output "result" of type "Any". (Type check passed).
+[32m2026-06-19 19:28:44 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4c3c2bad-4bc8-494e-8058-79f3381015f1 - 23093 - dbt_build - ASSET_MATERIALIZATION - Materialized value dbt_build.
+[32m2026-06-19 19:28:44 -0400[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4c3c2bad-4bc8-494e-8058-79f3381015f1 - 23093 - dbt_build - STEP_SUCCESS - Finished execution of step "dbt_build" in 35.97s.

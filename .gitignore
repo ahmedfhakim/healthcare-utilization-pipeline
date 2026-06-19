@@ -6,3 +6,6 @@ __pycache__/
 *.pyc
 .DS_Store
 .ipynb_checkpoints/
+
+# Dagster local dev artifacts
+dagster_project/.tmp_dagster_home_*/

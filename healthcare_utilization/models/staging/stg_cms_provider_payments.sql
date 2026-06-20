@@ -58,3 +58,4 @@ renamed as (
 )
 
 select * from renamed
+-- CI validation test

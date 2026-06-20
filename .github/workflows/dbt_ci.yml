@@ -1,0 +1,48 @@
+name: dbt CI
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "healthcare_utilization/**"
+      - ".github/workflows/dbt_ci.yml"
+
+jobs:
+  dbt-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dbt
+        run: pip install dbt-bigquery
+
+      - name: Write CI profiles.yml
+        run: |
+          mkdir -p ~/.dbt
+          cat > ~/.dbt/profiles.yml << PROFILE
+          healthcare_utilization:
+            target: ci
+            outputs:
+              ci:
+                type: bigquery
+                method: service-account-json
+                project: ${{ secrets.GCP_PROJECT }}
+                dataset: ci_healthcare
+                threads: 4
+                keyfile_json: ${{ secrets.GCP_SA_KEY }}
+                timeout_seconds: 300
+                location: US
+          PROFILE
+
+      - name: dbt deps
+        working-directory: healthcare_utilization
+        run: dbt deps
+
+      - name: dbt build
+        working-directory: healthcare_utilization
+        run: dbt build

@@ -2,7 +2,8 @@
 
 **Live Dashboard (Medicare cost analysis, Looker Studio):** https://datastudio.google.com/reporting/c2db7a18-9468-4a9b-bbef-95555ef8a678
 
-**New: [Health center quality benchmarks](uds_benchmarks/)** · [dashboard](https://ahmedfhakim.github.io/healthcare-utilization-pipeline/): HRSA UDS clinical quality measures for all ~1,360 federally funded community health centers (2023–2025), each compared with the nation, its state, and a peer group of centers serving similar patients.
+**Live Dashboard (Health center quality benchmarks, HRSA UDS):** https://ahmedfhakim.github.io/healthcare-utilization-pipeline/ · [code and methods](uds_benchmarks/)
+HRSA UDS clinical quality measures for all ~1,360 federally funded community health centers (2023–2025), each compared with the nation, its state, and a peer group of centers serving similar patients.
 
 **Repository:** https://github.com/ahmedfhakim/healthcare-utilization-pipeline
 
@@ -14,7 +15,7 @@ question. This project builds the analytics infrastructure to change that. Using
 real CMS Medicare provider payment data, CMS geographic variation data, and BLS
 healthcare inflation data, all ingested via REST APIs, I designed and built an
 end-to-end pipeline on BigQuery using dbt, MetricFlow, and Dagster, with a
-4-page Looker Studio dashboard surfacing the results.
+3-page Looker Studio dashboard surfacing the results.
 
 The pipeline covers $9.64B in Medicare payments across 106 specialties and 98,555
 providers. A governed MetricFlow semantic layer defines 8 core metrics so that
@@ -25,7 +26,7 @@ orchestrated with Dagster and runs end to end in under 3 minutes.
 
 ## Health center quality benchmarks (UDS module)
 
-The same benchmarking idea as the provider-outlier analysis below, applied to community health centers: instead of comparing a provider with its specialty, each health center is compared with **peers serving similar patients** (urban/rural, share uninsured, size) on the clinical quality measures every HRSA-funded center reports in the Uniform Data System.
+Peer benchmarking for community health centers: each health center is compared with **peers serving similar patients** (urban/rural, share uninsured, size) on the clinical quality measures every HRSA-funded center reports in the Uniform Data System.
 
 - **Data:** HRSA's UDS awardee workbooks, 2023–2025 (38 sheets each, every value stored as text with privacy-suppression markers)
 - **Stack:** Python extract → Parquet (committed, 2.3 MB) → dbt on DuckDB (24 models, seeds and tests) → static dashboard on GitHub Pages, rebuilt by GitHub Actions on every change. Nothing to pay for, nothing to expire.
@@ -38,12 +39,9 @@ Details, data-cleaning decisions and all findings: [`uds_benchmarks/README.md`](
 - Thoracic Surgery ($301.76/service) and Cardiac Surgery ($297.36/service) are
   the two highest-cost specialties per service rendered, both more than 5x the
   dataset-wide average
-- Florida shows the highest Medicare spending variance among states, at 24.91%
-  above the national average standardized payment per beneficiary, followed by
+- Florida has the highest Medicare spending relative to the national average,
+  24.91% above the national standardized payment per beneficiary, followed by
   Oklahoma (21.83%), Mississippi (21.27%), and Louisiana (21.22%)
-- 4,591 providers were flagged as high-cost relative to their specialty peers
-  without a corresponding increase in patient risk score, representing a
-  potential cost-efficiency review target for payers
 - Contrary to the assumption that healthcare inflation outpaces general
   inflation, Medical Care Commodities (drugs, equipment, supplies) has actually
   lagged behind general inflation since 2015, indexing at 115.51 vs. 141.39 for
@@ -55,11 +53,11 @@ CMS Provider Payment API + CMS Geographic Variation API + BLS CPI API
   -> Python ingestion (incremental load logic)
   -> BigQuery raw schema
   -> dbt staging (3 models)
-  -> dbt intermediate (3 models)
-  -> dbt marts (5 models)
+  -> dbt intermediate (2 models)
+  -> dbt marts (4 models)
   -> MetricFlow semantic layer (8 governed metrics)
   -> Dagster orchestration (parallel ingestion, sequential transformation)
-  -> Looker Studio dashboard (4 pages)
+  -> Looker Studio dashboard (3 pages)
 
 ## Tech Stack
 
@@ -82,8 +80,7 @@ CMS Provider Payment API + CMS Geographic Variation API + BLS CPI API
 
 1. **Executive Overview** - total spend, provider counts, top specialties by cost, cost tier breakdown
 2. **Geographic Variation** - state-level spend vs. national average, ranked
-3. **Provider Outliers** - providers flagged as high-cost relative to specialty peers, risk-adjusted
-4. **Inflation Trends** - Medical Care CPI vs. All Items CPI, indexed to 2015, with YoY change
+3. **Inflation Trends** - Medical Care CPI vs. All Items CPI, indexed to 2015, with YoY change
 
 ## Running Locally
 

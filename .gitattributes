@@ -1,1 +1,2 @@
 uds_benchmarks/dashboard/site/** linguist-generated
+*.sql linguist-detectable

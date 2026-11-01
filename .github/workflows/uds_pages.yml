@@ -1,0 +1,32 @@
+# UDS health center benchmarks: dbt build + tests on DuckDB, then publish the dashboard.
+# Written in JSON-style YAML so it works even if indentation is lost when pasting.
+{
+"name": "UDS benchmarks",
+"on": {
+"push": {"branches": ["main"], "paths": ["uds_benchmarks/**", ".github/workflows/uds_pages.yml"]},
+"pull_request": {"paths": ["uds_benchmarks/**", ".github/workflows/uds_pages.yml"]},
+"workflow_dispatch": {}
+},
+"permissions": {"contents": "read"},
+"jobs": {
+"build": {
+"runs-on": "ubuntu-latest",
+"steps": [
+{"uses": "actions/checkout@v4"},
+{"uses": "actions/setup-python@v5", "with": {"python-version": "3.12", "cache": "pip"}},
+{"run": "pip install -r uds_benchmarks/requirements.txt"},
+{"name": "dbt build (models + tests)", "working-directory": "uds_benchmarks/transform", "run": "dbt build --profiles-dir ."},
+{"name": "Build dashboard", "run": "python uds_benchmarks/dashboard/build.py"},
+{"uses": "actions/upload-pages-artifact@v3", "if": "github.event_name != 'pull_request'", "with": {"path": "uds_benchmarks/dashboard/site"}}
+]
+},
+"deploy": {
+"if": "github.event_name != 'pull_request'",
+"needs": "build",
+"runs-on": "ubuntu-latest",
+"permissions": {"pages": "write", "id-token": "write"},
+"environment": {"name": "github-pages", "url": "${{ steps.deployment.outputs.page_url }}"},
+"steps": [{"id": "deployment", "uses": "actions/deploy-pages@v4"}]
+}
+}
+}

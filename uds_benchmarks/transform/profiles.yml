@@ -1,0 +1,7 @@
+uds_benchmarks:
+  target: duckdb
+  outputs:
+    duckdb:
+      type: duckdb
+      path: ../data/uds.duckdb
+      threads: 4

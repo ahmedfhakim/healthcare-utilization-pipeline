@@ -1,6 +1,8 @@
 # Healthcare Cost & Utilization Analytics
 
-**Live Dashboard:** https://datastudio.google.com/reporting/c2db7a18-9468-4a9b-bbef-95555ef8a678
+**Live Dashboard (Medicare cost analysis, Looker Studio):** https://datastudio.google.com/reporting/c2db7a18-9468-4a9b-bbef-95555ef8a678
+
+**New: [Health center quality benchmarks](uds_benchmarks/)** · [dashboard](https://ahmedfhakim.github.io/healthcare-utilization-pipeline/): HRSA UDS clinical quality measures for all ~1,360 federally funded community health centers (2023–2025), each compared with the nation, its state, and a peer group of centers serving similar patients.
 
 **Repository:** https://github.com/ahmedfhakim/healthcare-utilization-pipeline
 
@@ -20,6 +22,16 @@ total spend, cost concentration, and geographic variance mean the same thing
 everywhere they're queried, whether through the dbt CLI, Looker Studio, or an
 AI assistant. The entire pipeline (ingestion, transformation, and testing) is
 orchestrated with Dagster and runs end to end in under 3 minutes.
+
+## Health center quality benchmarks (UDS module)
+
+The same benchmarking idea as the provider-outlier analysis below, applied to community health centers: instead of comparing a provider with its specialty, each health center is compared with **peers serving similar patients** (urban/rural, share uninsured, size) on the clinical quality measures every HRSA-funded center reports in the Uniform Data System.
+
+- **Data:** HRSA's UDS awardee workbooks, 2023–2025 (38 sheets each, every value stored as text with privacy-suppression markers)
+- **Stack:** Python extract → Parquet (committed, 2.3 MB) → dbt on DuckDB (24 models, seeds and tests) → static dashboard on GitHub Pages, rebuilt by GitHub Actions on every change. Nothing to pay for, nothing to expire.
+- **Headline finding:** health centers with the most uninsured patients screen 8.5 points fewer adults for colorectal cancer (41.0% vs. 49.5%) and 9.1 points fewer women for breast cancer, while screening done in the clinic (cervical, depression) doesn't fall. That's consistent with the cost of referred-out procedures.
+
+Details, data-cleaning decisions and all findings: [`uds_benchmarks/README.md`](uds_benchmarks/README.md).
 
 ## Key Findings
 

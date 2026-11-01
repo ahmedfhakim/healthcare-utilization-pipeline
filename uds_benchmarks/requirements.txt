@@ -1,0 +1,5 @@
+dbt-duckdb>=1.9
+duckdb>=1.3
+pandas>=2.0
+pyarrow>=14
+openpyxl>=3.1   # only for ingest_uds.py (reading HRSA's Excel files)

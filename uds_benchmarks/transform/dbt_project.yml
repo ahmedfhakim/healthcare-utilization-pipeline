@@ -1,0 +1,24 @@
+name: uds_benchmarks
+version: "1.0.0"
+profile: uds_benchmarks
+
+vars:
+  extract_dir: ../data/extract   # Parquet written by ingest_uds.py
+  # Rates from very small denominators swing wildly year to year. Below this many
+  # patients, a health center's rate is shown but not benchmarked or ranked.
+  min_denominator: 30
+
+models:
+  uds_benchmarks:
+    staging:
+      +materialized: table   # tables, so the database file works from anywhere (no relative Parquet paths)
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table
+
+seeds:
+  uds_benchmarks:
+    uds_measures:
+      +column_types: {measure_id: varchar, measure_name: varchar, short_name: varchar, ecqm_id: varchar,
+                      domain: varchar, higher_is_better: boolean, uds_table: varchar, first_year: integer}

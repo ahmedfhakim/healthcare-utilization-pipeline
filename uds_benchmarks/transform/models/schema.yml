@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: stg_uds__health_centers
+    description: One row per health center per reporting year (contact details deliberately not extracted).
+    columns:
+      - name: bhcmisid
+        data_tests: [not_null]
+      - name: state
+        data_tests: [not_null]
+      - name: urban_rural
+        data_tests:
+          - accepted_values:
+              arguments: {values: ['Urban', 'Rural']}
+
+  - name: stg_uds__patient_mix
+    columns:
+      - name: total_patients
+        data_tests: [not_null]
+
+  - name: int_uds__measure_results
+    columns:
+      - name: measure_id
+        data_tests:
+          - relationships:
+              arguments: {to: ref('uds_measures'), field: measure_id}
+
+  - name: mart_uds_center_benchmarks
+    description: Health center x year x measure, compared with national, state and peer-group medians.
+    columns:
+      - name: peer_band
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Top quarter of peers', 'Above peer median', 'Below peer median', 'Bottom quarter of peers', 'Too few patients to benchmark']
+      - name: national_percentile
+        description: 0-100, where 100 is the best-performing health center in the nation for that measure.

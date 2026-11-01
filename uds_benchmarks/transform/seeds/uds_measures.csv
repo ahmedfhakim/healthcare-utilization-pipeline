@@ -1,0 +1,19 @@
+measure_id,measure_name,short_name,ecqm_id,domain,higher_is_better,uds_table,first_year
+childhood_immunization,Childhood immunization status,Childhood immunizations,CMS117,Prevention,true,6B,2023
+cervical_screening,Cervical cancer screening,Cervical cancer screening,CMS124,Cancer screening,true,6B,2023
+breast_screening,Breast cancer screening,Breast cancer screening,CMS125,Cancer screening,true,6B,2023
+colorectal_screening,Colorectal cancer screening,Colorectal cancer screening,CMS130,Cancer screening,true,6B,2023
+child_bmi_counseling,Weight assessment and counseling for children and adolescents,Child weight counseling,CMS155,Prevention,true,6B,2023
+adult_bmi_followup,Adult BMI screening and follow-up plan,Adult BMI screening,CMS69,Prevention,true,6B,2023
+tobacco_cessation,Tobacco use screening and cessation intervention,Tobacco screening,CMS138,Prevention,true,6B,2023
+statin_therapy,Statin therapy for cardiovascular disease prevention,Statin therapy,CMS347,Chronic disease,true,6B,2023
+ivd_antiplatelet,Ischemic vascular disease: aspirin or antiplatelet,IVD antiplatelet,CMS164,Chronic disease,true,6B,2023
+hypertension_control,Controlling high blood pressure (<140/90),BP control,CMS165,Chronic disease,true,7,2023
+diabetes_poor_control,Diabetes: HbA1c poor control (>9%),Diabetes A1c >9%,CMS122,Chronic disease,false,7,2023
+hiv_linkage,HIV linkage to care within 30 days,HIV linkage to care,UDS,HIV,true,6B,2023
+hiv_screening,HIV screening,HIV screening,CMS349,HIV,true,6B,2023
+depression_screening,Depression screening and follow-up plan,Depression screening,CMS2,Behavioral health,true,6B,2023
+depression_remission,Depression remission at twelve months,Depression remission,CMS159,Behavioral health,true,6B,2023
+dental_sealants,Dental sealants for children 6-9 at risk,Dental sealants,CMS277,Oral health,true,6B,2023
+sud_initiation,Initiation of substance use disorder treatment,SUD treatment initiation,CMS137,Behavioral health,true,6B,2025
+sud_engagement,Engagement in substance use disorder treatment,SUD treatment engagement,CMS137,Behavioral health,true,6B,2025

@@ -1,0 +1,24 @@
+version: 2
+
+sources:
+  - name: uds
+    description: >
+      HRSA Uniform Data System awardee files (H80-YYYY.xlsx), extracted to Parquet by ingest_uds.py.
+      All columns are text exactly as published. union_by_name lines up years whose columns differ
+      (funding flags renamed in 2025, SUD measures added in 2025).
+    tables:
+      - name: health_centers
+        config:
+          external_location: "read_parquet('{{ var('extract_dir') }}/health_centers_*.parquet', union_by_name = true)"
+      - name: table4
+        description: Patients by income and insurance (UDS Table 4).
+        config:
+          external_location: "read_parquet('{{ var('extract_dir') }}/table4_*.parquet', union_by_name = true)"
+      - name: table6b
+        description: Quality-of-care measures (UDS Table 6B), one column per numerator, denominator and rate.
+        config:
+          external_location: "read_parquet('{{ var('extract_dir') }}/table6b_*.parquet', union_by_name = true)"
+      - name: table7_totals
+        description: Health outcomes (UDS Table 7), line i (all patients) only.
+        config:
+          external_location: "read_parquet('{{ var('extract_dir') }}/table7_totals_*.parquet', union_by_name = true)"

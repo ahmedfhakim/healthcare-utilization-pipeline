@@ -53,8 +53,8 @@ CMS Provider Payment API + CMS Geographic Variation API + BLS CPI API
   -> Python ingestion (incremental load logic)
   -> BigQuery raw schema
   -> dbt staging (3 models)
-  -> dbt intermediate (2 models)
-  -> dbt marts (4 models)
+  -> dbt intermediate (3 models)
+  -> dbt marts (5 models)
   -> MetricFlow semantic layer (8 governed metrics)
   -> Dagster orchestration (parallel ingestion, sequential transformation)
   -> Looker Studio dashboard (3 pages)

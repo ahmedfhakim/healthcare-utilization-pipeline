@@ -9,3 +9,13 @@ __pycache__/
 
 # Dagster local dev artifacts
 dagster_project/.tmp_dagster_home_*/
+
+# dbt logs (local run output, never committed)
+logs/
+**/logs/
+
+# UDS benchmarks: raw HRSA workbooks (20-30 MB each) and the local DuckDB file
+uds_benchmarks/data/raw/
+uds_benchmarks/data/*.duckdb
+uds_benchmarks/data/*.duckdb.wal
+.user.yml
